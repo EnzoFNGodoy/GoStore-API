@@ -1,24 +1,22 @@
-﻿
+﻿using GoStore.Domain.ValueObjects;
 
-using GoStore.Domain.Entities;
-using GoStore.Domain.ValueObjects;
-namespace PaymentContext.Domain.Entities;
+namespace GoStore.Domain.Entities;
 
 public sealed class CreditCardPayment : Payment
 {
     public CreditCardPayment(
         CreditCard creditCard,
         string lastTransactionNumber,
-        DateTime paymentDate, 
+        DateTime paymentDate,
         DateTime? expirationDate,
-        Price total, 
+        Price total,
         Price totalPaid,
         string payer,
         Address address,
         Email email) : base(
             paymentDate,
-            expirationDate, 
-            total, 
+            expirationDate,
+            total,
             totalPaid,
             payer,
             address,

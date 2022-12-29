@@ -12,4 +12,6 @@ public static class StringHelper
 
     public static bool HasSpecialCharacter(this string text) => 
         text.Any(char.IsPunctuation) || text.Any(char.IsPunctuation);
+
+    public static bool IsOnlyNumbers(this string text) => text.All(char.IsNumber);
 }

@@ -2,17 +2,17 @@
 using GoStore.Domain.Core.Entities;
 using GoStore.Domain.ValueObjects;
 
-namespace PaymentContext.Domain.Entities;
+namespace GoStore.Domain.Entities;
 
 public abstract class Payment : Entity
 {
     protected Payment(
-        DateTime paymentDate, 
-        DateTime? expirationDate, 
+        DateTime paymentDate,
+        DateTime? expirationDate,
         Price total,
-        Price totalPaid, 
-        string payer, 
-        Address address, 
+        Price totalPaid,
+        string payer,
+        Address address,
         Email email
         )
     {
@@ -28,7 +28,7 @@ public abstract class Payment : Entity
         AddNotifications(new Contract<Payment>()
             .Requires()
             .IsLowerOrEqualsThan(Total.Value, 0, "Payment.Total", "The total cannot be zero")
-            .IsLowerOrEqualsThan(TotalPaid.Value, Total.Value, "Payment.TotalPaid", "The total paid is less than Total"),
+            .IsLowerOrEqualsThan(TotalPaid.Value, Total.Value, "Payment.TotalPaid", "The total paid is less than Total")
             );
     }
 

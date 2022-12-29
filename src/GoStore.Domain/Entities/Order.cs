@@ -2,7 +2,6 @@
 using GoStore.Domain.Core.Entities;
 using GoStore.Domain.Enums;
 using GoStore.Domain.ValueObjects;
-using PaymentContext.Domain.Entities;
 
 namespace GoStore.Domain.Entities;
 

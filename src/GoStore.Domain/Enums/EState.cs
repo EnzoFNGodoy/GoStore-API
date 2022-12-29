@@ -1,4 +1,4 @@
-﻿namespace PaymentContext.Domain.Enums;
+﻿namespace GoStore.Domain.Enums;
 
 public enum EState
 {

@@ -1,14 +1,19 @@
 ﻿using Flunt.Validations;
 using GoStore.Domain.Core.ValueObjects;
-using GoStore.Domain.Validators;
-using PaymentContext.Domain.Enums;
+using GoStore.Domain.Enums;
+using GoStore.Domain.Helpers;
 
 namespace GoStore.Domain.ValueObjects;
 
 public sealed class Address : ValueObject
 {
-    public Address(string neighborhood, string street, string number, string zipCode, string city,
-      EState state, string country)
+    public Address(
+        string neighborhood, 
+        string street, 
+        string number, 
+        string zipCode, 
+        string city,
+        EState state)
     {
         Neighborhood = neighborhood;
         Street = street;
@@ -16,22 +21,24 @@ public sealed class Address : ValueObject
         ZipCode = zipCode;
         City = city;
         State = state;
-        Country = country;
 
         AddNotifications(new Contract<Address>()
             .Requires()
-            .IsGreaterOrEqualsThan(Neighborhood, 3, "Address.Neighborhood", "O bairro deve conter pelo menos 3 caracteres.")
-            .IsLowerOrEqualsThan(Neighborhood, 100, "Address.Neighborhood", "O bairro não deve conter mais de 100 caracteres.")
-            .IsGreaterOrEqualsThan(Street, 3, "Address.Street", "A rua deve conter pelo menos 3 caracteres.")
-            .IsLowerOrEqualsThan(Street, 100, "Address.Street", "A rua não deve conter mais de 100 caracteres.")
-            .IsGreaterOrEqualsThan(Number, 1, "Address.Number", "O número deve conter pelo menos 1 caracteres.")
-            .IsLowerOrEqualsThan(Number, 10, "Address.Number", "O número não deve conter mais de 10 caracteres.")
-            .IsTrue(ZipCodeIsValid(), "Address.ZipCode", "Código postal inválido")
-            .IsGreaterOrEqualsThan(City, 3, "Address.City", "A cidade deve conter pelo menos 3 caracteres.")
-            .IsLowerOrEqualsThan(City, 150, "Address.City", "A cidade não deve conter mais de 150 caracteres.")
-            .IsGreaterOrEqualsThan(City, 3, "Address.Country", "O país deve conter pelo menos 3 caracteres.")
-            .IsLowerOrEqualsThan(City, 150, "Address.Country", "O país não deve conter mais de 150 caracteres.")
-        );
+            .IsGreaterOrEqualsThan(Neighborhood, 3, "Address.Neighborhood", "The neighborhood must be greather or equals than 3 characters.")
+            .IsLowerOrEqualsThan(Neighborhood, 100, "Address.Neighborhood", "The neighborhood must be less than 100 characters.")
+            .IsNotNullOrWhiteSpace(Neighborhood, "Address.Neighborhood", "The neighborhood cannot be empty.")
+            .IsGreaterOrEqualsThan(Street, 3, "Address.Street", "The street must be greather or equals than 3 characters.")
+            .IsLowerOrEqualsThan(Street, 100, "Address.Street", "The street must be less than 100 characters.")
+            .IsNotNullOrWhiteSpace(Street, "Address.Street", "The street cannot be empty.")
+            .IsGreaterOrEqualsThan(Number, 1, "Address.Number", "The number must be greather or equals than 1 characters.")
+            .IsLowerOrEqualsThan(Number, 10, "Address.Number", "The number must be less than 100 characters.")
+            .IsNotNullOrWhiteSpace(Number, "Address.Number", "The number cannot be empty.")
+            .IsGreaterOrEqualsThan(City, 3, "Address.City", "The city must be greather or equals than 3 characters.")
+            .IsLowerOrEqualsThan(City, 150, "Address.City", "The city must be less than 100 characters.")
+            .IsNotNullOrWhiteSpace(City, "Address.City", "The city cannot be empty.")
+            .IsTrue(NumberIsValid(), "Address.Number", "Number is invalid.")
+            .IsTrue(ZipCodeIsValid(), "Address.ZipCode", "Zip code is invalid.")
+         );
     }
 
     public string Neighborhood { get; private set; }
@@ -40,11 +47,18 @@ public sealed class Address : ValueObject
     public string ZipCode { get; private set; }
     public string City { get; private set; }
     public EState State { get; private set; }
-    public string Country { get; private set; }
 
     private bool ZipCodeIsValid()
     {
-        if (ZipCode.Length == 8)
+        if (ZipCode.Length == 8 && ZipCode.IsOnlyNumbers())
+            return true;
+
+        return false;
+    }
+
+    private bool NumberIsValid()
+    {
+        if (Number.IsOnlyNumbers())
             return true;
 
         return false;
