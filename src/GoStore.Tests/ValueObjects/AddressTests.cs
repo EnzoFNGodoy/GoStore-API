@@ -103,7 +103,7 @@ public sealed class AddressTests
     }
 
     [Fact]
-    public void ShouldReturn_Success_When_IsValid()
+    public void ShouldReturn_Success_When_Address_IsValid()
     {
         var address = new Address(
          neighborhood: "Vila Velha",
