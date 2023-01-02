@@ -11,8 +11,9 @@ public sealed class Description : ValueObject
 
         AddNotifications(new Contract<Description>()
             .Requires()
-            .IsLowerThan(Text.Length, 3, "Description.Text", "The description must be longer than 3 characters ")
-            .IsGreaterThan(Text.Length, 100, "Description.Text", "The description must be less than 100 characters.")
+            .IsNotNullOrWhiteSpace(Text, "Description.Text", "The description cannot be empty.")
+            .IsGreaterOrEqualsThan(Text.Length, 3, "Description.Text", "The description must be longer than 3 characters ")
+            .IsLowerOrEqualsThan(Text.Length, 100, "Description.Text", "The description must be less than 100 characters.")
             );
     }
 

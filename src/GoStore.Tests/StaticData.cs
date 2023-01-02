@@ -7,6 +7,8 @@ internal sealed class StaticData
     internal const string MORE_THAN_50_CHARACTERS = "fhbunjieyswefhnwwefhujniklofoehujniFHUNIOOfnidbhhbns";
     internal const string MORE_THAN_100_CHARACTERS = "fhbunjieyswefhnwwefhujniklofoehujniFHUNIOOfnidbhhbnsdfosdfbnidbsUIOFJDSBNOJIFDOBJIKdfbikodfbkodSBdasdaasd";
     internal const string MORE_THAN_150_CHARACTERS = "fhjisdbfihsdbfhjndimiqjnxomwvdwfopwobfjibsdomcpsdocmioasdbnciuasbnxoamdopaknofbasviojaspovaionhdvoaijdoiajmdioawjcduiohqvnwohqwioumhjoqiwmjvhcioqhwnhvci";
+
+    internal const string ONE_HUNDRED_CHARACTERS = "fgu9obhwenasfiouasdhnfgusdg8sdhgisdjgnsdkojngosdknfkp[NDOasbfjmsdkpfasjbdakodmoaskdnsjoandmkoasmddda";
     #endregion
 
     #region Address
