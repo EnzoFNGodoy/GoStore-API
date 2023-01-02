@@ -12,12 +12,13 @@ public sealed class Password : ValueObject
 
         AddNotifications(new Contract<Password>()
             .Requires()
-            .IsFalse(Text.HasUpperCases(), "Password.Text", "The password must have at least one upper case.")
-            .IsFalse(Text.HasLowerCases(), "Password.Text", "The password must have at least one lower case.")
-            .IsFalse(Text.HasNumbers(), "Password.Text", "The password must have at least one number.")
-            .IsFalse(Text.HasSpecialCharacter(), "Password.Text", "The password must have at least one special character.")
-            .IsLowerThan(Text.Length, 3, "Password.Text", "The password must be longer than 3 characters.")
-            .IsGreaterThan(Text.Length, 16, "Password.Text", "The password must be less than 16 characters.")
+            .IsTrue(Text.HasUpperCases(), "Password.Text", "The password must have at least one upper case.")
+            .IsTrue(Text.HasLowerCases(), "Password.Text", "The password must have at least one lower case.")
+            .IsTrue(Text.HasNumbers(), "Password.Text", "The password must have at least one number.")
+            .IsTrue(Text.HasSpecialCharacter(), "Password.Text", "The password must have at least one special character.")
+            .IsNotNullOrWhiteSpace(Text, "Password.Text", "The password cannot be empty.")
+            .IsGreaterOrEqualsThan(Text.Length, 6, "Password.Text", "The password must be greater or equals than 6 characters.")
+            .IsLowerOrEqualsThan(Text.Length, 16, "Password.Text", "The password must be lower or equals than 16 characters.")
             );
     }
 
