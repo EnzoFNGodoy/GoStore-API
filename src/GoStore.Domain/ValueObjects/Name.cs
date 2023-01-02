@@ -15,10 +15,12 @@ public sealed class Name : ValueObject
 
         AddNotifications(new Contract<Name>()
             .Requires()
-            .IsLowerThan(FirstName.Length, 3, "Name.FirstName", "The first name must be longer than 3 characters.")
-            .IsGreaterThan(FirstName.Length, 50, "Name.FirstName", "The first name must be less than 100 characters.")
-            .IsLowerThan(LastName.Length, 3, "Name.LastName", "The last name must be longer than 3 characters.")
-            .IsGreaterThan(LastName.Length, 50, "Name.LastName", "The last name must be less than 100 characters.")
+            .IsNotNullOrWhiteSpace(FirstName, "Name.FirstName", "The first name cannot be empty.")
+            .IsGreaterOrEqualsThan(FirstName.Length, 3, "Name.FirstName", "The first name must be longer than 3 characters.")
+            .IsLowerOrEqualsThan(FirstName.Length, 50, "Name.FirstName", "The first name must be less than 100 characters.")
+            .IsNotNullOrWhiteSpace(LastName, "Name.LastName", "The last name cannot be empty.")
+            .IsGreaterOrEqualsThan(LastName.Length, 3, "Name.LastName", "The last name must be longer than 3 characters.")
+            .IsLowerOrEqualsThan(LastName.Length, 50, "Name.LastName", "The last name must be less than 100 characters.")
             );
     }
 
