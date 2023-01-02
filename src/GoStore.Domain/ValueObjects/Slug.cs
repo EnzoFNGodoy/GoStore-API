@@ -8,12 +8,12 @@ public sealed class Slug : ValueObject
 {
     public Slug(string text)
     {
-        Text = text.Replace(' ', '-');
+        Text = text;
 
         AddNotifications(new Contract<Slug>()
             .Requires()
-            .IsLowerThan(Text.Length, 3, "Slug.Text", "The slug must be greater than 3 characters.")
-            .IsGreaterThan(Text.Length, 20, "Slug.Text", "The slug must be lower than 20 characters.")
+            .IsGreaterOrEqualsThan(Text.Length, 3, "Slug.Text", "The slug must be greater than 3 characters.")
+            .IsLowerOrEqualsThan(Text.Length, 20, "Slug.Text", "The slug must be lower than 20 characters.")
             .IsTrue(Validate(), "Slug.Text", "Slug is invalid.")
             );
     }
