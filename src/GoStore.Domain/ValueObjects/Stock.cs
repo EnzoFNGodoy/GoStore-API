@@ -11,7 +11,7 @@ public sealed class Stock : ValueObject
 
         AddNotifications(new Contract<Stock>()
             .Requires()
-            .IsLowerThan(Quantity, 0, "Stock.Quantity", "The stock must be greater than zero.")
+            .IsGreaterOrEqualsThan(Quantity, 0, "Stock.Quantity", "The stock must be greater or equals than zero.")
             );
     }
 
