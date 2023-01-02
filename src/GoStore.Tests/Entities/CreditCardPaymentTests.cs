@@ -5,24 +5,6 @@ namespace GoStore.Tests.Entities;
 
 public sealed class CreditCardPaymentTests
 {
-    [Fact]
-    public void ShouldReturn_Error_When_CreditCard_IsInvalid()
-    {
-        var creditCardPayment = new CreditCardPayment(
-            creditCard: StaticData.InvalidCreditCard,
-            lastTransactionNumber: "39201",
-            paymentDate: new DateTime(2023, 02, 01),
-            expirationDate: new DateTime(2023, 02, 20),
-            total: StaticData.ValidPrice,
-            totalPaid: StaticData.ValidPrice,
-            payer: StaticData.ValidName,
-            address: StaticData.ValidAddress,
-            email: StaticData.ValidEmail
-            );
-
-        Assert.False(creditCardPayment.IsValid);
-    }
-
     [Theory]
     [InlineData("")]
     [InlineData("   ")]

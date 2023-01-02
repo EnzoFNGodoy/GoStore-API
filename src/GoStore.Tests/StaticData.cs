@@ -62,4 +62,8 @@ internal sealed class StaticData
     internal static Price ValidPrice = new((decimal)12.34);
     internal static Price InvalidPrice = new(-1);
     #endregion
+
+    #region Password
+    internal static Password ValidPassword = new("Messi123@");
+    #endregion
 }
