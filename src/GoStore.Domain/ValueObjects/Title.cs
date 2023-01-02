@@ -11,8 +11,9 @@ public sealed class Title : ValueObject
 
 		AddNotifications(new Contract<Title>()
 			.Requires()
-			.IsLowerThan(Text.Length, 3, "Title.Text", "The title must be longer than 3 characters ")
-			.IsGreaterThan(Text.Length, 50, "Title.Text", "The title must be less than 3 characters.")
+			.IsNotNullOrWhiteSpace(Text, "Title.Text", "The title cannot be empty.")
+			.IsGreaterOrEqualsThan(Text.Length, 3, "Title.Text", "The title must be longer than 3 characters ")
+			.IsLowerOrEqualsThan(Text.Length, 50, "Title.Text", "The title must be less than 3 characters.")
 			);
 	}
 
