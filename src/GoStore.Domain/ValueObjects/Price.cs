@@ -12,7 +12,8 @@ public sealed class Price : ValueObject
 
         AddNotifications(new Contract<Price>()
             .Requires()
-            .IsLowerOrEqualsThan(Value, 0, "Price.Value", "The price must be longer than zero")
+            .IsNotNull(Value, "Price.Value", "The price cannot be empty.")
+            .IsGreaterThan(Value, 0, "Price.Value", "The price must be longer than zero")
             );
     }
 
