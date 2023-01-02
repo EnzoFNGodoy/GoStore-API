@@ -8,12 +8,13 @@ public sealed class Tag : ValueObject
 {
 	public Tag(string text)
 	{
-		Text = text.ToLower();
+        Text = text;
 
         AddNotifications(new Contract<Tag>()
           .Requires()
-          .IsLowerThan(Text.Length, 3, "Tag.Text", "The tag must be longer than 3 characters ")
-          .IsGreaterThan(Text.Length, 20, "Tag.Text", "The tag must be less than 20 characters.")
+          .IsNotNullOrWhiteSpace(Text, "Tag.Text", "The tag cannot be empty.")
+          .IsGreaterOrEqualsThan(Text.Length, 3, "Tag.Text", "The tag must be longer than 3 characters ")
+          .IsLowerOrEqualsThan(Text.Length, 20, "Tag.Text", "The tag must be less than 20 characters.")
           .IsTrue(Validate(), "Tag.Text", "The tag is invalid.")
           );
     }
