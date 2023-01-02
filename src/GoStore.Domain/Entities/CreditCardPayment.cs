@@ -1,4 +1,6 @@
-﻿using GoStore.Domain.ValueObjects;
+﻿using Flunt.Validations;
+using GoStore.Domain.Helpers;
+using GoStore.Domain.ValueObjects;
 
 namespace GoStore.Domain.Entities;
 
@@ -11,7 +13,7 @@ public sealed class CreditCardPayment : Payment
         DateTime? expirationDate,
         Price total,
         Price totalPaid,
-        string payer,
+        Name payer,
         Address address,
         Email email) : base(
             paymentDate,
@@ -24,8 +26,25 @@ public sealed class CreditCardPayment : Payment
     {
         CreditCard = creditCard;
         LastTransactionNumber = lastTransactionNumber;
+
+        AddNotifications(CreditCard, 
+            new Contract<CreditCard>()
+            .Requires()
+            .IsNotNullOrWhiteSpace(LastTransactionNumber, "CreditCardPayment.LastTransactionNumber", "The last transaction number cannot be empty.")
+            .IsGreaterOrEqualsThan(LastTransactionNumber.Length, 3, "CreditCardPayment.LastTransactionNumber", "The last transaction number must be greather or equals than 3 characters.")
+            .IsLowerOrEqualsThan(LastTransactionNumber.Length, 20, "CreditCardPayment.LastTransactionNumber", "The last transaction number must be lower or equals than 20 characters.")
+            .IsTrue(Validate(), "CreditCardPayment", "The credit card payment is invalid.")
+            );
     }
 
     public CreditCard CreditCard { get; private set; }
     public string LastTransactionNumber { get; private set; }
+
+    private bool Validate()
+    {
+        if (LastTransactionNumber.IsOnlyNumbers() is false)
+            return false;
+
+        return true;
+    }
 }

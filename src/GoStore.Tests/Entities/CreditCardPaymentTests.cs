@@ -1,0 +1,64 @@
+﻿using GoStore.Domain.Entities;
+using System.Linq.Expressions;
+
+namespace GoStore.Tests.Entities;
+
+public sealed class CreditCardPaymentTests
+{
+    [Fact]
+    public void ShouldReturn_Error_When_CreditCard_IsInvalid()
+    {
+        var creditCardPayment = new CreditCardPayment(
+            creditCard: StaticData.InvalidCreditCard,
+            lastTransactionNumber: "39201",
+            paymentDate: new DateTime(2023, 02, 01),
+            expirationDate: new DateTime(2023, 02, 20),
+            total: StaticData.ValidPrice,
+            totalPaid: StaticData.ValidPrice,
+            payer: StaticData.ValidName,
+            address: StaticData.ValidAddress,
+            email: StaticData.ValidEmail
+            );
+
+        Assert.False(creditCardPayment.IsValid);
+    }
+
+    [Theory]
+    [InlineData("")]
+    [InlineData("   ")]
+    [InlineData(StaticData.MORE_THAN_20_CHARACTERS)]
+    public void ShouldReturn_Error_When_LastTransactionNumber_IsInvalid(string number)
+    {
+        var creditCardPayment = new CreditCardPayment(
+            creditCard: StaticData.ValidCreditCard,
+            lastTransactionNumber: number,
+            paymentDate: new DateTime(2023, 02, 01),
+            expirationDate: new DateTime(2023, 02, 20),
+            total: StaticData.ValidPrice,
+            totalPaid: StaticData.ValidPrice,
+            payer: StaticData.ValidName,
+            address: StaticData.ValidAddress,
+            email: StaticData.ValidEmail
+            );
+
+        Assert.False(creditCardPayment.IsValid);
+    }
+
+    [Fact]
+    public void ShouldReturn_Success_When_CreditCardPayment_IsValid()
+    {
+        var creditCardPayment = new CreditCardPayment(
+           creditCard: StaticData.ValidCreditCard,
+           lastTransactionNumber: "2391312",
+           paymentDate: new DateTime(2023, 02, 01),
+           expirationDate: new DateTime(2023, 02, 20),
+           total: StaticData.ValidPrice,
+           totalPaid: StaticData.ValidPrice,
+           payer: StaticData.ValidName,
+           address: StaticData.ValidAddress,
+           email: StaticData.ValidEmail
+           );
+
+        Assert.True(creditCardPayment.IsValid);
+    }
+}

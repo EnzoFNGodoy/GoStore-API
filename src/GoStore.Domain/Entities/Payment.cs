@@ -11,7 +11,7 @@ public abstract class Payment : Entity
         DateTime? expirationDate,
         Price total,
         Price totalPaid,
-        string payer,
+        Name payer,
         Address address,
         Email email
         )
@@ -25,10 +25,10 @@ public abstract class Payment : Entity
         Address = address;
         Email = email;
 
-        AddNotifications(new Contract<Payment>()
+        AddNotifications(Total, TotalPaid, Payer, Address, Email, new Contract<Payment>()
             .Requires()
-            .IsLowerOrEqualsThan(Total.Value, 0, "Payment.Total", "The total cannot be zero")
-            .IsLowerOrEqualsThan(TotalPaid.Value, Total.Value, "Payment.TotalPaid", "The total paid is less than Total")
+            .IsGreaterThan(Total.Value, 0, "Payment.Total", "The total cannot be zero")
+            .IsGreaterOrEqualsThan(TotalPaid.Value, Total.Value, "Payment.TotalPaid", "The total paid is less than Total")
             );
     }
 
@@ -37,7 +37,7 @@ public abstract class Payment : Entity
     public DateTime? ExpirationDate { get; private set; }
     public Price Total { get; private set; }
     public Price TotalPaid { get; private set; }
-    public string Payer { get; private set; }
+    public Name Payer { get; private set; }
     public Address Address { get; private set; }
     public Email Email { get; private set; }
 }
