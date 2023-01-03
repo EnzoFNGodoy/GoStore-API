@@ -42,9 +42,9 @@ public sealed class CreditCardPayment : Payment
 
     private bool Validate()
     {
-        if (LastTransactionNumber.IsOnlyNumbers() is false)
-            return false;
+        if (LastTransactionNumber.IsOnlyNumbers())
+            return true;
 
-        return true;
+        return false;
     }
 }
