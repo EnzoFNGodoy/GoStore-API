@@ -1,8 +1,6 @@
 ﻿using GoStore.Domain.Enums;
 using GoStore.Domain.ValueObjects;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using System.IO;
-using System.Reflection.Emit;
+using GoStore.Domain.Entities;
 
 namespace GoStore.Tests;
 
@@ -64,6 +62,107 @@ internal sealed class StaticData
     #endregion
 
     #region Password
+    internal static Password InvalidPassword = new("");
     internal static Password ValidPassword = new("Messi123@");
+    #endregion
+
+    #region Title
+    internal static Title ValidTitle = new("Lionel Messi");
+    internal static Title InvalidTitle = new("");
+    #endregion
+
+    #region Description
+    internal static Description ValidDescription = new("Lionel Messi");
+    internal static Description InvalidDescription = new("");
+    #endregion
+
+    #region Slug
+    internal static Slug ValidSlug = new("lionel-messi");
+    internal static Slug InvalidSlug = new("");
+    #endregion
+
+    #region Tag
+    internal static Tag ValidTag = new("lionel messi");
+    internal static Tag InvalidTag = new("");
+    #endregion
+
+    #region Stock
+    internal static Stock ValidStock = new(10);
+    internal static Stock InvalidStock = new(-1);
+    #endregion
+
+    #region Customer
+
+    internal static Customer InvalidCustomer = new(
+        name: InvalidName,
+        email: InvalidEmail,
+        password: InvalidPassword,
+        address: InvalidAddress
+        );
+
+    internal static Customer ValidCustomer = new(
+        name: ValidName,
+        email: ValidEmail,
+        password: ValidPassword,
+        address: ValidAddress
+        );
+    #endregion
+
+    #region Order
+
+    internal Order InvalidOrder = new(
+        InvalidCustomer,
+        new DateTime(2023, 02, 01)
+        );
+
+    internal Order ValidOrder = new(
+        ValidCustomer,
+        new DateTime(2023, 02, 01)
+        );
+    #endregion
+
+    #region Product
+    internal Product InvalidProduct = new(
+        title: InvalidTitle,
+        description: InvalidDescription,
+        price: InvalidPrice,
+        slug: InvalidSlug,
+        stock: InvalidStock
+        );
+
+    internal Product ValidProduct = new(
+        title: ValidTitle,
+        description: ValidDescription,
+        price: ValidPrice,
+        slug: ValidSlug,
+        stock: ValidStock
+        );
+    #endregion
+
+    #region CreditCardPayment
+
+    internal CreditCardPayment ValidCreditCardPayment = new(
+            creditCard: ValidCreditCard,
+            lastTransactionNumber: "3981321",
+            paymentDate: new DateTime(2023, 12, 01),
+            expirationDate: new DateTime(2023, 12, 20),
+            total: ValidPrice,
+            totalPaid: ValidPrice,
+            payer: ValidName,
+            address: ValidAddress,
+            email: ValidEmail
+        );
+
+    internal CreditCardPayment InvalidCreditCardPayment = new(
+           creditCard: InvalidCreditCard,
+           lastTransactionNumber: "",
+           paymentDate: DateTime.Now.AddDays(-1),
+           expirationDate: new DateTime(2023, 02, 20),
+           total: InvalidPrice,
+           totalPaid: InvalidPrice,
+           payer: InvalidName,
+           address: InvalidAddress,
+           email: InvalidEmail
+       );
     #endregion
 }
