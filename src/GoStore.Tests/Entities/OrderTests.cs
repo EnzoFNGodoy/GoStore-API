@@ -17,10 +17,8 @@ public sealed class OrderTests
 
         order.AddProduct(product);
 
-        Assert.False(order.Products.Any());
+        Assert.False(order.GetProducts().Any());
         Assert.False(order.IsValid);
-
-        
     }
 
     [Fact]
@@ -32,8 +30,8 @@ public sealed class OrderTests
 
         order.AddProduct(product);
 
-        Assert.True(order.Products.Any());
-        Assert.Equal(1, order.Products.Count);
+        Assert.True(order.GetProducts().Any());
+        Assert.Equal(1, order.GetProducts().Count);
         Assert.True(order.IsValid);
     }
     #endregion
@@ -164,7 +162,7 @@ public sealed class OrderTests
 
         order.Finish();
 
-        Assert.Equal(2, order.Products.Count);
+        Assert.Equal(2, order.GetProducts().Count);
         Assert.NotNull(order.Payment);
         Assert.Equal(EOrderStatus.Finished, order.Status);
         Assert.True(order.IsValid);

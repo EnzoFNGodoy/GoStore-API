@@ -19,7 +19,7 @@ public sealed class ProductTests
 
         product.AddTag(tag);
 
-        Assert.False(product.Tags.Any());
+        Assert.False(product.GetTags().Any());
         Assert.False(product.IsValid);
     }
 
@@ -38,7 +38,7 @@ public sealed class ProductTests
 
         product.AddTag(tag);
 
-        Assert.Equal(1, product.Tags.Count);
+        Assert.Equal(1, product.GetTags().Count);
         Assert.True(product.IsValid);
     }
 

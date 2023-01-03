@@ -28,7 +28,8 @@ public sealed class Order : Entity
     public Payment? Payment { get; set; }
     public DateTime Date { get; private set; }
     public EOrderStatus Status { get; private set; }
-    public IReadOnlyCollection<Product> Products { get => _products.ToArray(); }
+
+    public IReadOnlyCollection<Product> GetProducts() => _products.ToArray();
 
     public void AddProduct(Product product)
     {

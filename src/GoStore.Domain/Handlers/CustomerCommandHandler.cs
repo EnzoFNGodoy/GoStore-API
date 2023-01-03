@@ -58,7 +58,7 @@ public sealed class CustomerCommandHandler :
 
         await _customerRepository.Create(customer);
 
-        _emailServices.Send(name.ToString(), email.ToString(), $"Welcome to GoStore, {name}!", $"Your account has been successfully created. Welcome!");
+        _emailServices.Send(name.ToString(), email.ToString()!, $"Welcome to GoStore, {name}!", $"Your account has been successfully created. Welcome!");
 
         return new CommandResult(true, "Customer successfully created.");
     }
@@ -101,7 +101,7 @@ public sealed class CustomerCommandHandler :
 
         await _customerRepository.Update(customer);
 
-        _emailServices.Send(name.ToString(), email.ToString(), $"Customer updated, {name}!", $"Your account has been successfully updated. Enjoy!");
+        _emailServices.Send(name.ToString(), email.ToString()!, $"Customer updated, {name}!", $"Your account has been successfully updated. Enjoy!");
 
         return new CommandResult(true, "Customer successfully updated.");
     }
@@ -125,7 +125,7 @@ public sealed class CustomerCommandHandler :
 
         await _customerRepository.Delete(customer.Id);
 
-        _emailServices.Send(customer.Name.ToString(), customer.Email.ToString(), $"Customer deleted, {customer.Name}!", $"Your account has been successfully deleted. We hope you will come back!");
+        _emailServices.Send(customer.Name.ToString(), customer.Email.ToString()!, $"Customer deleted, {customer.Name}!", $"Your account has been successfully deleted. We hope you will come back!");
 
         return new CommandResult(true, "Customer successfully deleted.");
     }

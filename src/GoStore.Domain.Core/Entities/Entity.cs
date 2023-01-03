@@ -4,7 +4,7 @@ namespace GoStore.Domain.Core.Entities;
 
 public abstract class Entity : Notifiable<Notification>
 {
-    public Entity()
+    protected Entity()
     {
         Id = Guid.NewGuid();
         CreatedAt = DateTime.Now;

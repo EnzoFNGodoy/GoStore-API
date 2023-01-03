@@ -29,7 +29,8 @@ public sealed class Product : Entity
     public Price Price { get; private set; }
     public Slug Slug { get; private set; }
     public Stock Stock { get; private set; }
-    public IReadOnlyCollection<Tag> Tags { get => _tags.ToArray(); }
+
+    public IReadOnlyCollection<Tag> GetTags() => _tags.ToArray();
 
     public void AddTag(Tag tag)
     {
