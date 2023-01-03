@@ -1,0 +1,6 @@
+﻿D:\Dev\Studies\GoStore\src\GoStore.Domain.Core\Commands\CommandResult.cs
+D:\Dev\Studies\GoStore\src\GoStore.Domain.Core\Commands\ICommand.cs
+D:\Dev\Studies\GoStore\src\GoStore.Domain.Core\Commands\ICommandResult.cs
+D:\Dev\Studies\GoStore\src\GoStore.Domain.Core\Entities\Entity.cs
+D:\Dev\Studies\GoStore\src\GoStore.Domain.Core\Handlers\IHandler.cs
+D:\Dev\Studies\GoStore\src\GoStore.Domain.Core\ValueObjects\ValueObject.cs
