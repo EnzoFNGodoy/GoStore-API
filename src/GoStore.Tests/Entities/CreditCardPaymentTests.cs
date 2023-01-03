@@ -1,5 +1,4 @@
 ﻿using GoStore.Domain.Entities;
-using System.Linq.Expressions;
 
 namespace GoStore.Tests.Entities;
 
