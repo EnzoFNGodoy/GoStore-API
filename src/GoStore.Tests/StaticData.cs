@@ -82,7 +82,7 @@ internal sealed class StaticData
     #endregion
 
     #region Tag
-    internal static Tag ValidTag = new("lionel messi");
+    internal static Tag ValidTag = new("messi");
     internal static Tag InvalidTag = new("");
     #endregion
 
