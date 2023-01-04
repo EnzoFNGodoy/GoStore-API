@@ -7,8 +7,8 @@ using GoStore.Domain.Enums;
 
 namespace GoStore.Domain.Commands.Customers;
 
-public sealed class UpdateCustomerCommand : 
-    Notifiable<Notification>, 
+public sealed class UpdateCustomerCommand :
+    Notifiable<Notification>,
     ICommand
 {
     public Guid Id { get; set; }
@@ -27,25 +27,36 @@ public sealed class UpdateCustomerCommand :
 
     public void Validate()
     {
+        FastValidateId();
         FastValidateName();
         FastValidateEmail();
     }
 
     #region Fast Fail Validations
+    private void FastValidateId()
+    {
+        AddNotifications(new Contract<UpdateCustomerCommand>()
+           .Requires()
+           .IsFalse(Id == Guid.Empty, "UpdateCustomerCommand.Id", "The ID cannot be empty.")
+           );
+    }
+
     private void FastValidateName()
     {
-        AddNotifications(new Contract<CreateCustomerCommand>()
+        AddNotifications(new Contract<UpdateCustomerCommand>()
            .Requires()
-           .IsNotNullOrWhiteSpace(FirstName, "CreateCustomerCommand.FirstName", "The first name cannot be empty.")
-           .IsNotNullOrWhiteSpace(LastName, "CreateCustomerCommand.LastName", "The last name cannot be empty.")
+           .IsNotNullOrWhiteSpace(FirstName, "UpdateCustomerCommand.FirstName", "The first name cannot be empty.")
+           .IsNotNullOrEmpty(FirstName, "UpdateCustomerCommand.FirstName", "The first name cannot be empty.")
+           .IsNotNullOrWhiteSpace(LastName, "UpdateCustomerCommand.LastName", "The last name cannot be empty.")
+           .IsNotNullOrEmpty(LastName, "UpdateCustomerCommand.LastName", "The last name cannot be empty.")
            );
     }
 
     private void FastValidateEmail()
     {
-        AddNotifications(new Contract<CreateCustomerCommand>()
+        AddNotifications(new Contract<UpdateCustomerCommand>()
            .Requires()
-           .IsEmail(Email, "CreateCustomerCommand.Email", "Email is invalid.")
+           .IsEmail(Email, "UpdateCustomerCommand.Email", "Email is invalid.")
             );
     }
     #endregion
