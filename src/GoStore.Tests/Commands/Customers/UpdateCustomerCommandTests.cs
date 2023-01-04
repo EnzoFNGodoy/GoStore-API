@@ -87,7 +87,7 @@ public sealed class UpdateCustomerCommandTests
     }
 
     [Fact]
-    public void ShouldReturn_Success_When_CreateCustomerCommand_IsValid()
+    public void ShouldReturn_Success_When_UpdateCustomerCommand_IsValid()
     {
         var command = new UpdateCustomerCommand()
         {

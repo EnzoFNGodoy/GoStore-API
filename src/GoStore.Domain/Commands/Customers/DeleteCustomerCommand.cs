@@ -14,7 +14,7 @@ public sealed class DeleteCustomerCommand :
     {
         AddNotifications(new Contract<DeleteCustomerCommand>()
             .Requires()
-            .IsTrue(Id == Guid.Empty, "DeleteCustomerCommand.Id", "The id cannot be empty")
+            .IsFalse(Id == Guid.Empty, "DeleteCustomerCommand.Id", "The id cannot be empty")
             );
     }
 }
