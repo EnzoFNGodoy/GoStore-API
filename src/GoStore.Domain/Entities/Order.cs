@@ -2,7 +2,6 @@
 using GoStore.Domain.Core.Entities;
 using GoStore.Domain.Enums;
 using GoStore.Domain.Exceptions;
-using GoStore.Domain.ValueObjects;
 
 namespace GoStore.Domain.Entities;
 

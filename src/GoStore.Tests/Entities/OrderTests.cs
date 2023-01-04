@@ -64,7 +64,7 @@ public sealed class OrderTests
     }
     #endregion
 
-    #region To Pending
+    #region ToPending
     [Fact]
     public void ShouldReturn_Error_When_TryingTo_ChangeTheStatus_ToPending_But_Order_IsInvalid()
     {
@@ -166,7 +166,5 @@ public sealed class OrderTests
         Assert.NotNull(order.Payment);
         Assert.Equal(EOrderStatus.Finished, order.Status);
         Assert.True(order.IsValid);
-
-        
     }
 }

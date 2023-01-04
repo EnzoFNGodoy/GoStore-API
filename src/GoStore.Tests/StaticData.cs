@@ -4,7 +4,6 @@ using GoStore.Domain.Entities;
 
 namespace GoStore.Tests;
 
-
 internal sealed class StaticData
 {
     #region Constants

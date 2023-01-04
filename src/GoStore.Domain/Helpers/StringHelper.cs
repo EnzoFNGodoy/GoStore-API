@@ -10,7 +10,7 @@ public static class StringHelper
 
     public static bool HasNumbers(this string text) => text.Any(char.IsNumber);
 
-    public static bool HasSpecialCharacter(this string text) => 
+    public static bool HasSpecialCharacter(this string text) =>
         text.Any(char.IsPunctuation) || text.Any(char.IsSymbol);
 
     public static bool IsOnlyNumbers(this string text) => text.All(char.IsNumber);
