@@ -38,7 +38,9 @@ public sealed class CreateCustomerCommand :
         AddNotifications(new Contract<CreateCustomerCommand>()
            .Requires()
            .IsNotNullOrWhiteSpace(FirstName, "CreateCustomerCommand.FirstName", "The first name cannot be empty.")
+           .IsNotNullOrEmpty(FirstName, "CreateCustomerCommand.FirstName", "The first name cannot be empty.")
            .IsNotNullOrWhiteSpace(LastName, "CreateCustomerCommand.LastName", "The last name cannot be empty.")
+           .IsNotNullOrEmpty(LastName, "CreateCustomerCommand.LastName", "The last name cannot be empty.")
            );
     }
 

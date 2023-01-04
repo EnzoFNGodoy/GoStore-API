@@ -11,6 +11,7 @@ internal sealed class StaticData
     internal const string MORE_THAN_100_CHARACTERS = "fhbunjieyswefhnwwefhujniklofoehujniFHUNIOOfnidbhhbnsdfosdfbnidbsUIOFJDSBNOJIFDOBJIKdfbikodfbkodSBdasdaasd";
     internal const string MORE_THAN_150_CHARACTERS = "fhjisdbfihsdbfhjndimiqjnxomwvdwfopwobfjibsdomcpsdocmioasdbnciuasbnxoamdopaknofbasviojaspovaionhdvoaijdoiajmdioawjcduiohqvnwohqwioumhjoqiwmjvhcioqhwnhvci";
     internal const string MORE_THAN_20_CHARACTERS = "gbnigdfbiumaikdmasjdass";
+    internal const string MORE_THAN_16_CHARACTERS = "gbnigdfbiumaikdma";
 
     internal const string ONE_HUNDRED_CHARACTERS = "fgu9obhwenasfiouasdhnfgusdg8sdhgisdjgnsdkojngosdknfkp[NDOasbfjmsdkpfasjbdakodmoaskdnsjoandmkoasmddda";
     internal const string FIFTY_CHARACTERS = "gbnigdfbiumaikdmasjndoamfasifnasfkomasopfmasfmoada";

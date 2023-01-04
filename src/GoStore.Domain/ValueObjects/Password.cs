@@ -23,4 +23,6 @@ public sealed class Password : ValueObject
     }
 
     public string Text { get; private set; }
+
+    public override string ToString() => Text;
 }

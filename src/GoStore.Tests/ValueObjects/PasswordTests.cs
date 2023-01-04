@@ -11,6 +11,7 @@ public sealed class PasswordTests
     [InlineData("Messi123")]
     [InlineData("Messi@")]
     [InlineData("MESSI@123")]
+    [InlineData(StaticData.MORE_THAN_16_CHARACTERS)]
     public void ShouldReturn_Error_When_PasswordTyped_IsInvalid(string pwd)
     {
         var password = new Password(pwd);
