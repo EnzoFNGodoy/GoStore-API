@@ -1,4 +1,5 @@
 ﻿using GoStore.Domain.ValueObjects;
+using GoStore.Tests.Data;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace GoStore.Tests.ValueObjects;

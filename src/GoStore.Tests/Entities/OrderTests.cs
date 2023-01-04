@@ -1,6 +1,7 @@
 ﻿using GoStore.Domain.Entities;
 using GoStore.Domain.Enums;
 using GoStore.Domain.Exceptions;
+using GoStore.Tests.Data;
 using System.Reflection.Metadata.Ecma335;
 
 namespace GoStore.Tests.Entities;

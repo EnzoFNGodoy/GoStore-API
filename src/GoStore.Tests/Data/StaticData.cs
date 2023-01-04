@@ -1,8 +1,10 @@
 ﻿using GoStore.Domain.Enums;
 using GoStore.Domain.ValueObjects;
 using GoStore.Domain.Entities;
+using GoStore.Domain.Commands.Customers;
+using System.Net;
 
-namespace GoStore.Tests;
+namespace GoStore.Tests.Data;
 
 internal sealed class StaticData
 {
@@ -16,7 +18,13 @@ internal sealed class StaticData
     internal const string ONE_HUNDRED_CHARACTERS = "fgu9obhwenasfiouasdhnfgusdg8sdhgisdjgnsdkojngosdknfkp[NDOasbfjmsdkpfasjbdakodmoaskdnsjoandmkoasmddda";
     internal const string FIFTY_CHARACTERS = "gbnigdfbiumaikdmasjndoamfasifnasfkomasopfmasfmoada";
     internal const string TWENTY_CHARACTERS = "gbnigdfbiumaikdmasjs";
+
+    internal const string EMAIL_EXISTS = "email.already@exists.com";
+    internal static Guid ID_EXISTS = Guid.Parse("5770A674-4C3B-4489-B358-52733CA819C7");
+    internal static Guid ID_NOT_EXISTS = Guid.Parse("2E073632-B032-46DA-B506-7F13DA8F150E");
     #endregion
+
+    #region ValueObjects
 
     #region Address
     internal static Address ValidAddress = new(
@@ -91,6 +99,10 @@ internal sealed class StaticData
     internal static Stock InvalidStock = new(-1);
     #endregion
 
+    #endregion
+
+    #region Entities
+
     #region Customer
 
     internal static Customer InvalidCustomer = new(
@@ -164,5 +176,48 @@ internal sealed class StaticData
            address: InvalidAddress,
            email: InvalidEmail
        );
+    #endregion
+
+    #endregion
+
+    #region Commands
+
+    #region Customers
+
+    internal CreateCustomerCommand ValidCreateCustomerCommand = new()
+    {
+        FirstName = "Lionel",
+        LastName = "Messi",
+        Email = ValidEmail.ToString(),
+        Password = ValidPassword.ToString(),
+        Neighborhood = ValidAddress.Neighborhood,
+        Street = ValidAddress.Street,
+        Number = ValidAddress.Number,
+        ZipCode = ValidAddress.ZipCode,
+        City = ValidAddress.City,
+        State = ValidAddress.State
+    };
+
+    internal UpdateCustomerCommand ValidUpdateCustomerCommand = new()
+    {
+        Id = ID_EXISTS,
+        FirstName = "Lionel",
+        LastName = "Messi",
+        Email = ValidEmail.ToString(),
+        Neighborhood = ValidAddress.Neighborhood,
+        Street = ValidAddress.Street,
+        Number = ValidAddress.Number,
+        ZipCode = ValidAddress.ZipCode,
+        City = ValidAddress.City,
+        State = ValidAddress.State
+    };
+
+    internal DeleteCustomerCommand ValidDeleteCustomerCommand = new()
+    {
+        Id = ID_EXISTS
+    };
+
+    #endregion
+
     #endregion
 }

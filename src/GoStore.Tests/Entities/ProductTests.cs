@@ -1,4 +1,5 @@
 ﻿using GoStore.Domain.Entities;
+using GoStore.Tests.Data;
 
 namespace GoStore.Tests.Entities;
 

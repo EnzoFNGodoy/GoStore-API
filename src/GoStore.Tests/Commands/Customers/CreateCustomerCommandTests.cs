@@ -1,5 +1,6 @@
 ﻿using GoStore.Domain.Commands.Customers;
 using GoStore.Domain.ValueObjects;
+using GoStore.Tests.Data;
 
 namespace GoStore.Tests.Commands.Customers;
 

@@ -75,13 +75,13 @@ public sealed class CustomerCommandHandler :
         var customer = await _customerRepository.CustomerExists(command.Id);
 
         if (customer is null)
-            return new CommandResult(false, "This customer doens't exists.");
+            AddNotification("Customer", "The customer not exists.");
 
         if (await _customerRepository.EmailExists(command.Id, command.Email))
             AddNotification("Email", "A customer with this email already exists.");
 
         var name = new Name(command.FirstName, command.LastName);
-        var password = customer.Password;
+        var password = customer == null ? new Password(string.Empty) : customer.Password;
         var email = new Email(command.Email);
         var address = new Address(
             command.Neighborhood,
@@ -118,12 +118,12 @@ public sealed class CustomerCommandHandler :
         var customer = await _customerRepository.CustomerExists(command.Id);
 
         if (customer is null)
-            return new CommandResult(false, "This customer doesn't exists.");
+            AddNotification("Customer", "The customer not exists.");
 
         if (!IsValid)
             return new CommandResult(false, "The customer couldn't be deleted.");
 
-        await _customerRepository.Delete(customer.Id);
+        await _customerRepository.Delete(customer!.Id);
 
         _emailServices.Send(customer.Name.ToString(), customer.Email.ToString()!, $"Customer deleted, {customer.Name}!", $"Your account has been successfully deleted. We hope you will come back!");
 

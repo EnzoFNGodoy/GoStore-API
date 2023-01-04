@@ -1,5 +1,6 @@
 ﻿using GoStore.Domain.Enums;
 using GoStore.Domain.ValueObjects;
+using GoStore.Tests.Data;
 using System.IO;
 
 namespace GoStore.Tests.ValueObjects;
